@@ -472,8 +472,10 @@ make_expr_filter <- function(filters, filters_na, data, data_name) {
         }
       } else {
         data_values <- unique(as.character(data_values))
-        if ("<empty field>" %in% values)
-          values[which(values == "<empty field>")] <- ""
+        #if ("<empty field>" %in% values)
+        emptyField = as.character(as.tags("<empty field>")) 
+        if(emptyField %in% values)
+          values[which(values == emptyField)] <- ""
         if (!identical(sort(values), sort(data_values))) {
           if (length(values) == 0) {
             if (isTRUE(nas)) {
